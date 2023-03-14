@@ -26,12 +26,14 @@ $(function () {
         console.dir(JSON.stringify(data));
         if (zipcode.toString().length == 7) {
           let strZipcode = zipcode.toString();
+          //最初のslice(0〜3まで切り出している),二つ目のslice(後ろの三桁)
           strZipcode = strZipcode.slice(0, 3) + "-" + zipcode.slice(3);
           $("#zipcode").val(strZipcode);
         }
 
         const address = data.items[0].state_name + data.items[0].address;
         $("#address").val(address);
+        //自動補完でも文字が動くよう設定
         $("#address_label").addClass("active");
       })
       .fail(function (XMLHttpRequest, textStatus, errorThrown) {

@@ -1,7 +1,7 @@
 package com.example.domain;
 
 /**
- * トッピングを表すドメイン.
+ * トッピング情報を表すドメイン.
  * 
  * @author watanabe
  *

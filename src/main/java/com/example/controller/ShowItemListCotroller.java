@@ -27,19 +27,19 @@ public class ShowItemListCotroller {
 
 	@Autowired
 	private HttpSession session;
-	
+
 	/**
 	 * 商品情報を検索します.
 	 * 
 	 * @param model モデル
-	 * @return 商品一覧に遷移します
+	 * @return 商品一覧画面
 	 */
 	@GetMapping("")
 	public String showList(Model model, String name) {
 
 		List<Item> itemList = showItemListService.showItemList(name);
 		model.addAttribute("sessionId", session.getId());
-		
+
 		// アイテムリストが空だった場合
 		if (itemList.isEmpty()) {
 			String message = "該当する商品がありません";

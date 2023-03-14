@@ -25,9 +25,9 @@ public class ShowDetailCotroller {
 	/**
 	 * 詳細を表示するコントローラ.
 	 * 
-	 * @param model
-	 * @param id
-	 * @return idで検索したアイテム
+	 * @param model モデル
+	 * @param id 商品ID
+	 * @return idで検索した商品
 	 */
 	@GetMapping("/showDetail")
 	public String showDetail(Model model, Integer id,AddItemForm form) {

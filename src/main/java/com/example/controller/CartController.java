@@ -20,7 +20,7 @@ import com.example.service.ShowDetailService;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * ショッピンカート内の操作を行うクラス.
+ * ショッピングカート内の操作を行うクラス.
  * 
  * @author sugaharatakamasa
  *

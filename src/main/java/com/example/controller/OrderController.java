@@ -43,9 +43,12 @@ public class OrderController {
 	 * @return 注文情報入力画面
 	 */
 	public String toOrderConfirm(Integer orderId, Model model) {
+
 		Order order = orderConfirmService.showOrderConfirm(orderId);
 		model.addAttribute("order", order);
+
 		return "order_confirm";
+
 	}
 
 	/**
@@ -60,6 +63,7 @@ public class OrderController {
 	public String order(@Validated OrderForm form, BindingResult result, Model model,
 			@AuthenticationPrincipal LoginUser loginUser) {
 		System.out.println(form);
+
 		// 入力値チェック
 		result = addDeliveryTimeError(form, result);
 		if (result.hasErrors()) {
@@ -68,15 +72,21 @@ public class OrderController {
 		}
 
 		// ユーザー情報取得
-//		User user = (User) session.getAttribute("user");
 		User user = loginUser.getUser();
-
 		orderServise.order(form, user.getId());
 
 		return "redirect:/orderFinished";
 	}
 
+	/**
+	 * 配達時刻に関する入力値チェック.
+	 * 
+	 * @param form   フォーム
+	 * @param result 結果
+	 * @return 入力値チェックの結果
+	 */
 	public BindingResult addDeliveryTimeError(OrderForm form, BindingResult result) {
+
 		// 入力値チェック(配達日時)
 		LocalDate deliveryDate = LocalDate.parse(form.getDeliveryDate());
 		LocalDateTime deliveryDateTime = LocalDateTime
@@ -88,21 +98,28 @@ public class OrderController {
 			return result;
 
 		} else if (deliveryDateTime.isBefore(LocalDateTime.now().plusHours(3))) {
+
 			LocalDateTime nowTime = LocalDateTime.now();
 			LocalDateTime limitTime = LocalDateTime.now().withHour(15).withMinute(0).withSecond(0).withNano(0);
+
 			if (nowTime.isBefore(limitTime)) {
+
 				Integer availableTIme = nowTime.getHour() + 4;
 				result.addError(new FieldError("orderform", "deliveryTime",
 						"配達時間をご確認ください（現在、" + availableTIme + "時以降に配達が可能です。)"));
-//				result.rejectValue("deliveryTime", null, "配達時間をご確認ください（現在、" + availableTIme + "時以降に配達が可能です。)");
+
 			} else {
+
 				result.addError(new FieldError("orderform", "deliveryTime", "本日の予約可能時間を過ぎています。明日以降の日時を選択してください。"));
-//				result.rejectValue("deliveryTime", null, "本日の予約可能時間を過ぎています。明日以降の日時を選択してください。");
 
 			}
+
 			return result;
+
 		} else {
+
 			return result;
+
 		}
 
 	}

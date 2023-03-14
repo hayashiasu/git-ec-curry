@@ -36,10 +36,12 @@ public class OrderHistoryController {
 	 */
 	@GetMapping("")
 	public String showOrderHistory(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+
 		User user = loginUser.getUser();
 		List<Order> orderList = orderHistoryService.showOrderHistory(user.getId());
 		model.addAttribute("orderList", orderList);
 
 		return "order_history";
+
 	}
 }

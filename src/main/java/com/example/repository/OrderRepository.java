@@ -76,6 +76,13 @@ public class OrderRepository {
 		return order;
 	}
 
+	/**
+	 * ユーザーIDとステータスで注文情報を取得する.
+	 * 
+	 * @param userId ユーザーID
+	 * @param status 注文状況
+	 * @return 検索された注文情報
+	 */
 	public Order findByUserIdAndStatus(Integer userId, Integer status) {
 
 		StringBuilder findByUserIdAndStatusSql = new StringBuilder();
@@ -110,7 +117,6 @@ public class OrderRepository {
 		return orderList.get(0);
 	}
 
-	// 【6】注文確認画面表示
 	/**
 	 * 主キーで注文情報を取得する.
 	 * 
@@ -131,6 +137,12 @@ public class OrderRepository {
 
 	}
 
+	/**
+	 * ユーザーIDを更新する.
+	 * 
+	 * @param tentativeUserId 暫定のユーザーID
+	 * @param userId          ユーザーID
+	 */
 	public void updateUserId(Integer tentativeUserId, Integer userId) {
 		StringBuilder updateUserIdSql = new StringBuilder();
 		updateUserIdSql.append("UPDATE " + TABLE_NAME);
@@ -145,6 +157,11 @@ public class OrderRepository {
 
 	}
 
+	/**
+	 * 注文情報を更新する.
+	 * 
+	 * @param order 更新したい注文情報
+	 */
 	public void update(Order order) {
 		StringBuilder updateSql = new StringBuilder();
 		updateSql.append("UPDATE " + TABLE_NAME);
@@ -166,7 +183,7 @@ public class OrderRepository {
 
 		template.update(updateSql.toString(), param);
 	}
-	
+
 	/**
 	 * ユーザーIDで注文情報を取得する.
 	 * 
@@ -203,6 +220,11 @@ public class OrderRepository {
 		return orderList;
 	}
 
+	/**
+	 * 注文情報を削除する.
+	 * 
+	 * @param orderId 注文ID
+	 */
 	public void deleteByOrderId(Integer orderId) {
 		StringBuilder deleteByOrderId = new StringBuilder();
 		deleteByOrderId.append("DELETE FROM " + TABLE_NAME);

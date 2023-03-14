@@ -25,8 +25,15 @@ public class LoginAndLogoutController {
 	@Autowired
 	private HttpSession session;
 
+	/**
+	 * ログインページを表示する.
+	 * 
+	 * @param form フォーム
+	 * @param model モデル
+	 * @param error エラー
+	 * @return
+	 */
 	@GetMapping("")
-
 	public String toLogin(LoginForm form, Model model, String error) {
 
 		if (error != null) {

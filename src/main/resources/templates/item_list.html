@@ -149,8 +149,10 @@
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script th:src="@{/js/paginathing.js}"></script>
     <script type="text/javascript">
+    <!--ページング-->
       $(function () {
         $(".items").paginathing({
+        	/* perPageで表示されるアイテム数が変わる */
           perPage: 9,
           prevText: "前へ",
           nextText: "次へ",

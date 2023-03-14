@@ -37,11 +37,11 @@ public class OrderHistoryService extends CompleteOrderService {
 			order = super.completeOrder(order.getId());
 			newOrderList.add(order);
 		}
-		
+
 		return newOrderList;
 
 	}
-	
+
 	/**
 	 * 注文IDで注文情報を取得する.
 	 * 
@@ -49,7 +49,7 @@ public class OrderHistoryService extends CompleteOrderService {
 	 * @return 検索された注文情報
 	 */
 	public Order showOrderHistoryDetail(Integer id) {
-		
+
 		Order order = super.completeOrder(id);
 		return order;
 	}

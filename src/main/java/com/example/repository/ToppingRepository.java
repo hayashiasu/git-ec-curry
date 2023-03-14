@@ -12,6 +12,12 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.Topping;
 
+/**
+ * toppingsテーブルを操作するリポジトリ.
+ * 
+ * @author watanabe
+ *
+ */
 @Repository
 public class ToppingRepository {
 
@@ -19,16 +25,14 @@ public class ToppingRepository {
 	private NamedParameterJdbcTemplate template;
 
 	private static final String TABLE_NAME = "toppings";
-	/**
-	 * Toppingオブジェクトを生成するローマッパー
-	 */
+	/** Toppingオブジェクトを生成するローマッパー */
 	private static final RowMapper<Topping> TOPPING_ROW_MAPPER = new BeanPropertyRowMapper<>(Topping.class);
 
 	/**
-	 * ID検索.
+	 * 主キーからトッピング情報を検索する.
 	 * 
 	 * @param id 検索するID
-	 * @return 該当ID
+	 * @return 検索されたトッピング情報
 	 */
 	public Topping load(Integer id) {
 		StringBuilder loadSql = new StringBuilder();
@@ -45,11 +49,10 @@ public class ToppingRepository {
 		return topping;
 	}
 
-//【4】詳細画面
 	/**
-	 * トッピング一覧を表示します
+	 * トッピングの情報を全件検索します.
 	 * 
-	 * @return トッピング一覧情報
+	 * @return 検索されたトッピング情報
 	 */
 	public List<Topping> findAll() {
 		String sql = "SELECT id,name,price_m,price_l FROM toppings ORDER BY id;";

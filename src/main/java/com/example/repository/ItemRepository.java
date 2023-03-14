@@ -12,6 +12,12 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.Item;
 
+/**
+ * itemsテーブルを操作するリポジトリ.
+ * 
+ * @author watanabe
+ *
+ */
 @Repository
 public class ItemRepository {
 
@@ -50,6 +56,12 @@ public class ItemRepository {
 		return itemList;
 	}
 
+	/**
+	 * 主キーから商品情報を取得します.
+	 * 
+	 * @param id 商品ID
+	 * @return 検索された商品情報
+	 */
 	public Item load(Integer id) {
 		StringBuilder loadByIdSql = new StringBuilder();
 		loadByIdSql.append("SELECT");

@@ -13,10 +13,8 @@ import com.example.domain.Order;
  */
 @Service
 @Transactional
-public class OrderConfirmService extends CompleteOrderService{
+public class OrderConfirmService extends CompleteOrderService {
 
-
-	// 【6】注文確認画面表示
 	/**
 	 * 主キーで注文情報を取得する
 	 * 

@@ -31,6 +31,12 @@ public class OrderToppingRepository {
 
 	private static final String TABLE_NAME = "order_toppings";
 
+	/**
+	 * 注文トッピング情報を新規に作成する.
+	 * 
+	 * @param orderTopping 注文トッピング情報
+	 * @return 作成された注文トッピング情報
+	 */
 	public OrderTopping insert(OrderTopping orderTopping) {
 		StringBuilder insertSql = new StringBuilder();
 		insertSql.append("INSERT INTO " + TABLE_NAME);
@@ -38,7 +44,6 @@ public class OrderToppingRepository {
 		insertSql.append(" VALUES");
 		insertSql.append(" (:toppingId,:orderItemId)");
 
-//		SqlParameterSource param = new BeanPropertySqlParameterSource(OrderTopping.class);
 		SqlParameterSource param = new MapSqlParameterSource().addValue("toppingId", orderTopping.getToppingId())
 				.addValue("orderItemId", orderTopping.getOrderItemId());
 
@@ -51,7 +56,6 @@ public class OrderToppingRepository {
 		return orderTopping;
 	}
 
-	// 【6】注文確認画面表示
 	/**
 	 * 注文商品IDから注文トッピングを取得する.
 	 * 

@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /**
- * カレーを表すドメイン.
+ * 商品情報を表すドメイン.
  * 
  * @author watanabe
  *

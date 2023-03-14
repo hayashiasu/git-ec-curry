@@ -28,7 +28,6 @@ public class UserRepository {
 	private static final String TABLE_NAME = "users";
 	private static final RowMapper<User> USER_ROW_MAPPER = new BeanPropertyRowMapper<>(User.class);
 
-	// 【1】ユーザー登録をする
 	/**
 	 * Eメールからユーザー情報を検索する.
 	 * 
@@ -47,6 +46,12 @@ public class UserRepository {
 		return userList.get(0);
 	}
 
+	/**
+	 * 主キーからユーザー情報を検索する.
+	 * 
+	 * @param userId ユーザーID
+	 * @return 検索されたユーザー情報
+	 */
 	public User load(Integer userId) {
 		StringBuilder loadSql = new StringBuilder();
 		loadSql.append("SELECT");
@@ -70,7 +75,6 @@ public class UserRepository {
 		template.update(sql, param);
 	}
 
-	// 【2】ログインをする
 	/**
 	 * メールアドレスとパスワードからユーザ情報を検索する.
 	 * 

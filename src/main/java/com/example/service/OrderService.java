@@ -30,15 +30,14 @@ public class OrderService {
 	@Autowired
 	private OrderConfirmService orderConfirmService;
 
+	/**
+	 * 注文を行う.
+	 * 
+	 * @param form   フォーム
+	 * @param userId ユーザーID
+	 */
 	public void order(OrderForm form, Integer userId) {
 		Order order = orderRepository.load(form.getOrderId());
-//		order.setTotalPrice(form.getTotalPrice());
-//		order.setDestinationName(form.getDestinationName());
-//		order.setDestinationEmail(form.getDestinationEmail());
-//		order.setDestinationZipcode(form.getDestinationZipcode());
-//		order.setDestinationAddress(form.getDestinationAddress());
-//		order.setDestinationTel(form.getDestinationTel());
-//		order.setPaymentMethod(form.getPaymentMethod());
 		BeanUtils.copyProperties(form, order);
 
 		order.setUserId(userId);
@@ -49,6 +48,12 @@ public class OrderService {
 		orderRepository.update(order);
 	}
 
+	/**
+	 * ユーザーIDを更新する.
+	 * 
+	 * @param orderId         注文ID
+	 * @param tentativeUserId 暫定のユーザーID
+	 */
 	public void updateUserId(Integer orderId, Integer tentativeUserId) {
 		Order tentativeOrder = null;
 
@@ -58,7 +63,7 @@ public class OrderService {
 		for (OrderItem tentativeOrderItem : tentativeOrderItemList) {
 			order.getOrderItemList().add(tentativeOrderItem);
 		}
-		
+
 	}
 
 }

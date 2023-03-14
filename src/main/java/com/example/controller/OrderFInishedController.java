@@ -14,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/orderFinished")
 public class OrderFInishedController {
 
-	
 	/**
 	 * 注文確認画面を表示.
 	 * 
-	 * @return
+	 * @return 注文確認画面
 	 */
 	@GetMapping("")
 	public String toOrderFinished() {
+
 		return "order_finished";
+
 	}
+
 }
